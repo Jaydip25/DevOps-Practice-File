@@ -1,0 +1,19 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: mydeployments
+spec:
+   replicas: 5
+   selector:     
+    matchLabels:
+     name: deployment
+   template:
+     metadata:
+       name: testpoddeployment
+       labels:
+         name: deployment
+     spec:
+      containers:
+        - name: c000
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo Jaydip Mhatre; sleep 5; done"]

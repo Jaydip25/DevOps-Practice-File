@@ -1,0 +1,15 @@
+---
+- name: Install multiple packages
+  hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: Install packages
+      ansible.builtin.yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - httpd
+        - tree
+        - openssh

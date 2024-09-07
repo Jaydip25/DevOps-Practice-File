@@ -1,0 +1,20 @@
+kind: Pod                              
+apiVersion: v1                     
+metadata:                           
+  name: jaydippod1
+  annotations:
+    description: Creating two pod name is jaydippod01 and jaydippod02
+  labels:
+    env: development
+    class: pods
+spec:                                    
+  containers:
+#creating First container   
+    - name: jaydipcontainer01                     
+      image: centos              
+      command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
+#creating Second container   
+    - name: jaydipcontainer02                     
+      image: ubuntu              
+      command: ["/bin/bash", "-c", "while true; do echo Hello-Jaydip Mhatre; sleep 5 ; done"]
+      

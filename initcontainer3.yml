@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-example-pod
+spec:
+  initContainers:
+    - name: download-dataset
+      image: busybox
+      command: ["wget", "-O", "/data/dataset.zip", "https://example.com/dataset.zip"]
+      volumeMounts:
+        - name: data-volume
+          mountPath: /data
+    - name: unzip-dataset
+      image: busybox
+      command: ["unzip", "/data/dataset.zip", "-d", "/data"]
+      volumeMounts:
+        - name: data-volume
+          mountPath: /data
+  containers:
+    - name: main-app
+      image: main-app-image
+      volumeMounts:
+        - name: data-volume
+          mountPath: /app-data
+  volumes:
+    - name: data-volume
+      emptyDir: {}

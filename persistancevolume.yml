@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: myebsvol
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  hostPath:
+    path: "/var/lib/docker/volumes/testdemo/_data"
+      # awsElasticBlockStore:
+  #volumeID:           # YAHAN APNI EBS VOLUME ID DAALO
+  #fsType: ext4
+  #docker volume inspect testdemo 
+  #we have use above command in docker desktop to search the path of testdemo
+  #current lab is for Docker Desktop
+  #If you want to use AWS then remove 16 17 line and add 13 14 15

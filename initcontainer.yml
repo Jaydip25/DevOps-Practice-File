@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: initcontainer
+spec:
+  initContainers:
+  - name: c1
+    image: centos
+    #command: ["/bin/bash", "-c", "echo Technical-Guftgu from c1 cotainer > /tmp/xchange/testfile.txt; sleep 5"]
+    command: ["touch", "/tmp/xchange/empty_file"]
+    volumeMounts:                                    # Mount definition inside the container
+      - name: xchange
+        mountPath: "/tmp/xchange"
+  containers:                
+  - name: c2
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo ` cat /tmp/data/testfile` ; sleep 5 ; done"]
+    volumeMounts:
+      - name: xchange
+        mountPath: "/tmp/data"
+  volumes:                                                   
+  - name: xchange
+    emptyDir: {}

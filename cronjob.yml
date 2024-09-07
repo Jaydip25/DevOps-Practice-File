@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+ name: testjob
+spec:
+ schedule: "* * * * *"
+ jobTemplate:
+   spec:
+     template:
+      metadata:
+          name: testjob
+      spec:
+          containers:
+          - name: jd
+            image: ubuntu
+            command: ["/bin/bash", "-c", "echo Technical-Guftgu; sleep 5"]
+          restartPolicy: Never
+
