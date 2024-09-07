@@ -1,0 +1,19 @@
+#Jenkins Installation on AWS EC2 Machine
+
+# Step 1 Install docker
+
+yum install docker -y
+systemctl status docker
+systemctl start docker
+systemctl enable docker
+systemctl status docker
+
+#Step 2
+
+docker search jenkins
+docker pull jenkins/jenkins:latest
+docker images
+#open 8080 port in security group cutom TCP Anywhere
+docker run -d -p 8080:8080 docker.io/jenkins/jenkins:latest
+docker exec -it <name of Image> /bin/bash
+cat /var/jenkins_home/secrets/initialAdminPassword
